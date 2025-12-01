@@ -1,8 +1,74 @@
+.hero-section {
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.hero-section--full-width {
+  max-width: 100%;
+  padding: 0;
+}
+
+.hero-section__content {
+  position: relative;
+  min-height: 500px; /* altura do hero */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px 0 24px; /* padding-top para compensar o header fixo */
+}
+
+.hero-section__content img {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+.hero-section__content__text {
+  position: relative;
+  z-index: 2; /* fica acima da imagem */
+  color: #fff;
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    padding: .8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    transition: background .3s ease;
+
+    &:hover {
+      background: #333;
+    }
+  }
+}
+
 .home-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
-    padding: 2rem 1rem;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: -5rem;
+    position: relative;
+    z-index: 100;
+    padding: 0 2rem;
 }
 
 .home-card {
@@ -12,12 +78,16 @@
   background: #edeff0;
   min-height: 220px;
   cursor: pointer;
+  min-height: 320px;
+  flex: 1 1 300px;
+  max-width: 360px;
+  min-height: 240px;
 
   .card-content {
     position: relative;
     z-index: 1;
     padding: 2rem;
-    text-align: center;
+    text-align: left;
 
     h2 {
       margin: 0 0 .5rem;
@@ -41,31 +111,36 @@
 
     img {
       position: absolute;
+      top: 0;
+      left: 0;
       inset: 0;
       width: 100%;
-      height: 100%;
+      height: 70%;
       object-fit: cover;
       transform: translateY(-100%); /* começa fora, acima */
       transition: transform .6s ease;
     }
 
     .hover-title {
-      position: absolute;
-      bottom: -60px; /* começa fora, abaixo */
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      background: rgba(0,0,0,0.7);
-      padding: .5rem 1rem;
-      border-radius: 6px;
-      transition: bottom .5s ease, background .2s ease;
+    position: absolute;
+    bottom: -30%; /* começa fora, abaixo */
+    left: 0;
+    width: 100%;        /* ocupa toda a largura */
+    height: 30%;        /* ocupa os 30% restantes */
+    display: flex;      /* centraliza conteúdo dentro */
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(0,0,0,1.0); /* fundo cobre toda área */
+    transition: bottom .5s ease, background .2s ease;
 
       &:hover {
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,1.0); /* leve transparência ao passar o mouse */
       }
+      
     }
   }
 
@@ -74,7 +149,26 @@
   }
 
   &:hover .card-hover .hover-title {
-    bottom: 30%; /* título sobe e encontra a imagem */
+    bottom: 0; /* título sobe e encontra a imagem */
   }
 }
+
+@media (min-width: 1024px) {
+  .home-card {
+    width: 33.3333%; /* 3 cards lado a lado */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-card {
+    width: 50%; /* 2 cards lado a lado */
+  }
+}
+
+@media (max-width: 767px) {
+  .home-card {
+    width: 100%; /* 1 card por linha */
+  }
+}
+
 
