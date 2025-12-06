@@ -1,106 +1,570 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 95px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+  &_logo {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    height: 84px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1976d2;
+    cursor: pointer;
+  }
 
-    &_logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1.5rem;
-        font-weight: bold;
+  &_nav {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
         color: #1976d2;
-        cursor: pointer;
+      }
     }
+  }
 
-    &_nav {
-        display: flex;
-        gap: 2rem;
+  &_actions {
+    display: flex;
+    gap: 1rem;
+    margin-right: 3rem;
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-size: 1rem;
 
-            &.active, &:hover {
-                color: #1976d2;
-            }
-        }
+      &:hover {
+        color: #1976d2;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
     }
+  }
+}
 
-    &_actions {
-        display: flex;
-        gap: 1rem;
-        margin-right: 3rem;
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-        button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s;
-            font-size: 1rem;
+.dropdown-wrapper {
+  position: fixed;
+  top: 95px; // começa na borda inferior do header
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  height: 0;
+  overflow: hidden;
+  z-index: 999;
+  transition: height 0.6s ease;
+}
 
-            &:hover {
-                color: #1976d2;
-            }
+.dropdown-menu {
+  width: 100%;
+  background: #edeff0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 7rem 0;
+}
 
-            img {
-                width: 24px;
-                height: 24px;
-            }
-        }
+.nav-item-dropdown:hover .dropdown-wrapper {
+  height: 460px; // expande o wrapper para revelar o conteúdo
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  transform: translateY(0);
+}
+
+.dropdown-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.dropdown-split {
+  display: flex;
+  gap: 3rem;
+}
+
+.dropdown-content {
+  flex: 0 0 350px;
+  margin-top: -4rem; // sobe o conteúdo da lista
+}
+
+.dropdown-title {
+  font-size: 2rem;
+  color: #1976d2;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dropdown-item {
+  border-bottom: 1px solid #d0d0d0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  a {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      padding-left: 2rem;
+      background: #1976d2;
     }
+  }
+}
+
+// Controle de exibição dos detalhes por hover
+.dropdown-list:has(.dropdown-item:nth-child(1):hover)~.dropdown-details .dropdown-detail {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown-list:has(.dropdown-item:nth-child(1):hover)~.dropdown-details .dropdown-detail[data-detail="revistas"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-list:has(.dropdown-item:nth-child(2):hover)~.dropdown-details .dropdown-detail {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown-list:has(.dropdown-item:nth-child(2):hover)~.dropdown-details .dropdown-detail[data-detail="artigos"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-list:has(.dropdown-item:nth-child(3):hover)~.dropdown-details .dropdown-detail {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown-list:has(.dropdown-item:nth-child(3):hover)~.dropdown-details .dropdown-detail[data-detail="autores"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-details {
+  flex: 1;
+  position: relative;
+  min-height: 300px;
+  margin-top: -4rem; // sobe o conteúdo dos detalhes
+}
+
+.dropdown-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; // mudado de 80% para 100%
+  background:#edeff0;
+  padding: 0; // removido padding para ficar colado na borda
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start; // mudado de center para flex-start (alinha no topo)
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.detail-content {
+  flex: 1;
+  padding-top: 0; // sem padding no topo
+  margin-top: 0; // sem margem no topo
+
+  h3 {
+    font-size: 2rem;
+    color: #1976d2;
+    margin-top: 0; // remove margem superior do h3
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-link {
+    display: inline-block;
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateX(5px);
+    }
+  }
+}
+
+.detail-image {
+  flex: 0 0 400px;
+
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 }
 
 @media(max-width: 900px) {
-    .header {
-        padding: 0 1rem;
-        height: 56px;
+  .header {
+    padding: 0 1rem;
+    height: 56px;
 
-        &_nav {
-            gap: 1rem;
-            font-size: 0.95rem;
-        }
-
-        &_logo {
-            font-size: 1.2rem;
-        }
+    &_nav {
+      gap: 1rem;
+      font-size: 0.95rem;
     }
+
+    &_logo {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 @media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 0.5rem 1rem;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 0.5rem 1rem;
 
-        &_logo {
-            margin-bottom: 0.5rem;
-        }
-
-        &_nav {
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            width: 100%;
-            justify-content: flex-start;
-        }
-
-        &_actions {
-            margin-top: 0.5rem;
-            width: 100%;
-            justify-content: flex-start;
-        }
+    &_logo {
+      margin-bottom: 0.5rem;
     }
+
+    &_nav {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    &_actions {
+      margin-top: 0.5rem;
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .dropdown-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .dropdown-card {
+    padding: 1.25rem;
+  }
+
+  .dropdown-item .dropdown-detail {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    flex-direction: column;
+    transform: none;
+  }
+
+  .dropdown-detail__image {
+    width: 100%;
+
+    img {
+      height: 150px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .dropdown-menu {
+    padding: 1.5rem 0;
+  }
+
+  .dropdown-container {
+    padding: 0 0.875rem;
+  }
+
+  .dropdown-card {
+    padding: 1rem;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// Tablets grandes e médios
+@media (max-width: 1024px) and (min-width: 769px) {
+  .dropdown-wrapper {
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    padding: 0 2rem;
+  }
+
+  .dropdown-menu {
+    padding: 5rem 0;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .dropdown-container {
+    padding: 0 1.5rem;
+    max-width: 100%;
+  }
+
+  .dropdown-split {
+    gap: 2rem;
+  }
+
+  .dropdown-content {
+    flex: 0 0 300px;
+    margin-top: -3rem;
+  }
+
+  .dropdown-details {
+    margin-top: -3rem;
+  }
+
+  .detail-image {
+    flex: 0 0 220px;
+
+    img {
+      height: 180px;
+    }
+  }
+}
+
+// Tablets pequenos
+@media (max-width: 768px) and (min-width: 601px) {
+  .dropdown-wrapper {
+    height: 0;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    padding: 0 1.5rem;
+  }
+
+  .nav-item-dropdown:hover .dropdown-wrapper {
+    height: 550px;
+  }
+
+  .dropdown-menu {
+    padding: 4rem 0;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .dropdown-container {
+    padding: 0 1rem;
+  }
+
+  .dropdown-split {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .dropdown-content {
+    flex: 1;
+    margin-top: -2rem;
+  }
+
+  .dropdown-details {
+    min-height: 250px;
+    margin-top: -2rem;
+  }
+
+  .dropdown-detail {
+    position: relative;
+    padding: 0;
+  }
+
+  .detail-image {
+    flex: 0 0 200px;
+
+    img {
+      height: 160px;
+    }
+  }
+}
+
+// Celulares
+@media (max-width: 600px) {
+  .dropdown-wrapper {
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+  }
+
+  .nav-item-dropdown:hover .dropdown-wrapper {
+    height: 600px;
+  }
+
+  .dropdown-menu {
+    padding: 3rem 0;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .dropdown-container {
+    padding: 0 0.875rem;
+  }
+
+  .dropdown-split {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .dropdown-content {
+    flex: 1;
+    margin-top: -1.5rem;
+  }
+
+  .dropdown-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dropdown-item a {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+
+    &:hover {
+      padding-left: 1.5rem;
+    }
+  }
+
+  .dropdown-details {
+    min-height: 200px;
+    margin-top: -1.5rem;
+  }
+
+  .dropdown-detail {
+    position: relative;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .detail-content {
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .detail-image {
+    flex: 0 0 auto;
+    width: 100%;
+
+    img {
+      height: 140px;
+      width: 100%;
+    }
+  }
+}
+
+// Celulares pequenos (Galaxy S8, iPhone SE)
+@media (max-width: 414px) {
+  .dropdown-wrapper {
+    padding: 0 0.875rem;
+  }
+
+  .nav-item-dropdown:hover .dropdown-wrapper {
+    height: 580px;
+  }
+
+  .dropdown-menu {
+    padding: 2.5rem 0;
+  }
+
+  .dropdown-container {
+    padding: 0 0.5rem;
+  }
+
+  .dropdown-content {
+    margin-top: -1rem;
+  }
+
+  .dropdown-title {
+    font-size: 1.3rem;
+  }
+
+  .dropdown-item a {
+    font-size: 0.95rem;
+    padding: 0.875rem;
+  }
+
+  .dropdown-details {
+    margin-top: -1rem;
+  }
+
+  .detail-content {
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
 }

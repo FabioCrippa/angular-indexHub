@@ -9,7 +9,69 @@
     </div>
     <nav class="header_nav">
         <a routerLink="/" routerLinkActive="active">Home</a>
-        <a routerLink="/busca" routerLinkActive="active">Busca</a>
+    
+    <div class="nav-item-dropdown">
+      <a class="nav-link">Busca</a>
+      <div class="dropdown-wrapper">
+        <div class="dropdown-menu">
+          <div class="dropdown-container">
+            <div class="dropdown-split">
+
+              <div class="dropdown-content">
+                <ul class="dropdown-list">
+                  <li class="dropdown-item" (mouseenter)="showDetail('revistas')">
+                    <a>Revistas Científicas</a>
+                  </li>
+                  <li class="dropdown-item" (mouseenter)="showDetail('artigos')">
+                    <a>Artigos</a>
+                  </li>
+                  <li class="dropdown-item" (mouseenter)="showDetail('autores')">
+                    <a>Autores</a>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="dropdown-details">
+                <div class="dropdown-detail" [class.active]="activeDetail === 'revistas'">
+                  <div class="detail-content">
+                    <h3>Revistas Científicas</h3>
+                    <p>Explore nossa base completa de revistas indexadas com avaliação de impacto científico, métricas de citação e rankings atualizados periodicamente.</p>
+                    <a routerLink="/busca/revistas" class="btn-link">Explorar revistas →</a>
+                  </div>
+                  <div class="detail-image">
+                    <img src="https://www.excellenceeduc.com/wp-content/uploads/2021/05/CAPA-EXCELLENCE-ED-MAIO-2021.jpg" alt="Revistas">
+                  </div>
+                </div>
+                
+                <div class="dropdown-detail" [class.active]="activeDetail === 'artigos'">
+                  <div class="detail-content">
+                    <h3>Artigos Científicos</h3>
+                    <p>Busque artigos por título, autor, palavra-chave, DOI ou ISSN. Acesse metadados completos e exporte citações em diversos formatos.</p>
+                    <a routerLink="/busca/artigos" class="btn-link">Buscar artigos →</a>
+                  </div>
+                  <div class="detail-image">
+                    <img src="https://wordpress-cms-ead-prod-assets.quero.space/uploads/2024/03/Ferramentas-para-ler-um-artigo-cientifico.jpg" alt="Artigos">
+                  </div>
+                </div>
+                
+                <div class="dropdown-detail" [class.active]="activeDetail === 'autores'">
+                  <div class="detail-content">
+                    <h3>Autores e Pesquisadores</h3>
+                    <p>Encontre pesquisadores, visualize suas publicações, instituições e redes de colaboração científica.</p>
+                    <a routerLink="/busca/autores" class="btn-link">Pesquisar autores →</a>
+                  </div>
+                  <div class="detail-image">
+                    <img src="https://i0.wp.com/www.astropt.org/blog/wp-content/uploads/2023/05/E2eYdAvWEAw2ips.jpg?w=606&ssl=1" alt="Autores">
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
         <a routerLink="/rankings" routerLinkActive="active">Rankings</a>
         <a routerLink="/editor" routerLinkActive="active">Editor</a>
     </nav>
