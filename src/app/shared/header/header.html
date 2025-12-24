@@ -75,6 +75,17 @@
         <a routerLink="/rankings" routerLinkActive="active">Rankings</a>
         <a routerLink="/editor" routerLinkActive="active">Editor</a>
     </nav>
+
+    <button 
+      class="header_hamburger"
+      aria-label="Abrir menu de navegação"
+      type="button"
+      (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
     <div class="header_actions">
         <button aria-label="Trocar idioma">
             <img  
@@ -88,3 +99,51 @@
         </button>
     </div>
 </header>
+
+<div 
+  class="off-canvas-overlay"
+  *ngIf="isMenuOpen"
+  (click)="toggleMenu()">
+
+  <div 
+    class="off-canvas-menu"
+    (click)="$event.stopPropagation()">
+
+    <button 
+      class="off-canvas-close"
+      (click)="toggleMenu()"
+      aria-label="Fechar menu">
+      <span>&times;</span>
+    </button>
+
+    <nav 
+      class="off-canvas-nav">
+      <a routerLink="/" (click)="toggleMenu()">Home</a>
+      
+      <div class="nav-item-dropdown-mobile">
+        <button 
+          class="nav-dropdown-toggle"
+          (click)="toggleBuscaSubmenuOpen()"
+          type="button">
+          Busca
+          <span class="dropdown-icon"
+          [class.rotated]="isBuscaSubmenuOpen">
+            ▼
+          </span>
+        </button>
+
+        <div 
+          class="nav-submenu"
+          [class.open]="isBuscaSubmenuOpen">
+          <a routerLink="/busca/revistas" (click)="toggleMenu()">Revistas Científicas</a>
+          <a routerLink="/busca/artigos" (click)="toggleMenu()">Artigos</a>
+          <a routerLink="/busca/autores" (click)="toggleMenu()">Autores</a>
+        </div>
+      </div>
+
+      <a routerLink="/rankings" (click)="toggleMenu()">Rankings</a>
+      <a routerLink="/editor" (click)="toggleMenu()">Editor</a>
+    </nav>
+
+  </div>
+</div>
