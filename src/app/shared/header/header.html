@@ -78,27 +78,48 @@
 
     <button 
       class="header_hamburger"
-      aria-label="Abrir menu de navegação"
+      [attr.aria-label]="isMenuOpen ? t('fechar menu') : t('abrir menu')"
       type="button"
-      (click)="toggleMenu()">
+      (click)="toggleMenu()"
+      aria-label="Menu">
       <span></span>
       <span></span>
       <span></span>
-
     </button>
     <div class="header_actions">
-        <button aria-label="Trocar idioma">
-            <img  
-                src="https://img.icons8.com/color/48/geography--v1.png" 
-                alt="geography--v1"/>
+        <button 
+            (click)="toggleLanguage()"
+            [attr.aria-label]="translateService.currentLang() === 'pt' ? 'Trocar para inglês' : 'Switch to Portuguese'">
+            <span class="lang-badge">{{ translateService.currentLang().toUpperCase() }}</span>
         </button>
-        <button aria-label="Modo claro/escuro">
-            <img 
-                src="https://img.icons8.com/ios-filled/50/do-not-disturb-2.png" 
-                alt="do-not-disturb-2"/>
+        <button 
+            (click)="toggleSearch()"
+            [attr.aria-label]="isSearchOpen ? 'Fechar busca' : 'Abrir busca'">
+            <mat-icon>{{ isSearchOpen ? 'close' : 'search' }}</mat-icon>
         </button>
     </div>
 </header>
+
+<!-- Barra de Busca Expansível -->
+<div 
+  class="search-bar"
+  [class.open]="isSearchOpen">
+  <div class="search-bar-content">
+    <div class="search-input-wrapper">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input 
+        type="text" 
+        class="search-input"
+        [placeholder]="translateService.currentLang() === 'pt' ? 'Buscar revistas, artigos, autores...' : 'Search journals, articles, authors...'"
+        (keyup.enter)="toggleSearch()">
+      <button 
+        class="search-submit"
+        [attr.aria-label]="translateService.currentLang() === 'pt' ? 'Buscar' : 'Search'">
+        {{ translateService.currentLang() === 'pt' ? 'Buscar' : 'Search' }}
+      </button>
+    </div>
+  </div>
+</div>
 
 <div 
   class="off-canvas-overlay"
@@ -112,38 +133,59 @@
     <button 
       class="off-canvas-close"
       (click)="toggleMenu()"
-      aria-label="Fechar menu">
+      [attr.aria-label]="t('fechar')">
       <span>&times;</span>
     </button>
 
     <nav 
       class="off-canvas-nav">
-      <a routerLink="/" (click)="toggleMenu()">Home</a>
+      <a routerLink="/" (click)="toggleMenu()">{{ t('home') }}</a>
       
-      <div class="nav-item-dropdown-mobile">
+      <button 
+        class="nav-item-link"
+        (click)="openBuscaMenu()"
+        type="button">
+        {{ t('busca') }}
+      </button>
+
+      <a routerLink="/rankings" (click)="toggleMenu()">{{ t('rankings') }}</a>
+      <a routerLink="/editor" (click)="toggleMenu()">{{ t('editor') }}</a>
+    </nav>
+
+    <div 
+      class="busca-submenu-overlay"
+      *ngIf="isBuscaMenuOpen"
+      (click)="closeBuscaMenu()">
+      
+      <div 
+        class="busca-submenu"
+        (click)="$event.stopPropagation()">
+        
         <button 
-          class="nav-dropdown-toggle"
-          (click)="toggleBuscaSubmenuOpen()"
-          type="button">
-          Busca
-          <span class="dropdown-icon"
-          [class.rotated]="isBuscaSubmenuOpen">
-            ▼
-          </span>
+          class="busca-submenu-back"
+          (click)="closeBuscaMenu()"
+          [attr.aria-label]="t('voltar')">
+          <mat-icon>arrow_back</mat-icon>
+          <span>{{ t('voltar') }}</span>
         </button>
 
-        <div 
-          class="nav-submenu"
-          [class.open]="isBuscaSubmenuOpen">
-          <a routerLink="/busca/revistas" (click)="toggleMenu()">Revistas Científicas</a>
-          <a routerLink="/busca/artigos" (click)="toggleMenu()">Artigos</a>
-          <a routerLink="/busca/autores" (click)="toggleMenu()">Autores</a>
-        </div>
-      </div>
+        <nav class="busca-submenu-nav">
+          <a routerLink="/busca/revistas" (click)="closeBuscaMenu(); toggleMenu()">
+            <mat-icon>menu_book</mat-icon>
+            <span>{{ t('revistas') }}</span>
+          </a>
+          <a routerLink="/busca/artigos" (click)="closeBuscaMenu(); toggleMenu()">
+            <mat-icon>description</mat-icon>
+            <span>{{ t('artigos') }}</span>
+          </a>
+          <a routerLink="/busca/autores" (click)="closeBuscaMenu(); toggleMenu()">
+            <mat-icon>people</mat-icon>
+            <span>{{ t('autores') }}</span>
+          </a>
+        </nav>
 
-      <a routerLink="/rankings" (click)="toggleMenu()">Rankings</a>
-      <a routerLink="/editor" (click)="toggleMenu()">Editor</a>
-    </nav>
+      </div>
+    </div>
 
   </div>
 </div>
