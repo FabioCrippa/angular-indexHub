@@ -11,15 +11,32 @@
   height: 95px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: height 0.3s ease, padding 0.3s ease;
+  
+  // Shrink Header no Scroll
+  &.scrolled {
+    height: 90px; // Header menor ao rolar
+
+    .header_logo img {
+      transform: scale(0.71);
+    }
+  }
 
   &_logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #1976d2;
+    text-decoration: none;
     cursor: pointer;
+
+    img {
+      width: 65px;
+      height: 127px;
+      transition: transform 0.3s ease;
+    }
   }
 
   &_nav {
@@ -59,8 +76,9 @@
 
       &:hover {
         background: var(--color-surface);
-        
-        mat-icon, .lang-badge {
+
+        mat-icon,
+        .lang-badge {
           color: #1976d2;
         }
       }
@@ -331,7 +349,7 @@
   top: 0;
   left: 0;
   width: 100%; // mudado de 80% para 100%
-  background:#edeff0;
+  background: #edeff0;
   padding: 0; // removido padding para ficar colado na borda
 
   opacity: 0;
@@ -697,8 +715,8 @@
     top: 56px; // Ajusta para altura do header mobile
 
     &.open {
-      max-height: 100px;
-      padding: 1.5rem 0;
+      max-height: 90px;
+      padding: 1rem 0;
     }
   }
 
@@ -707,38 +725,136 @@
   }
 
   .search-input-wrapper {
-    padding: 0.625rem 1rem;
+    padding: 0.5rem 0.875rem;
+    gap: 0.65rem;
+  }
+
+  .search-input {
+    font-size: 0.875rem;
   }
 
   .search-submit {
-    padding: 0.625rem 1.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+// Ajustes para tablets e celulares grandes
+@media (max-width: 1024px) {
+  .search-bar {
+    &.open {
+      max-height: 100px;
+      padding: 1rem 0;
+    }
+  }
+
+  .search-bar-content {
+    padding: 0 1.5rem;
+  }
+
+  .search-input-wrapper {
+    padding: 0.6rem 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .search-input {
+    font-size: 0.95rem;
+  }
+
+  .search-submit {
+    padding: 0.65rem 1.5rem;
     font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    &.open {
+      max-height: 85px;
+      padding: 0.875rem 0;
+    }
+  }
+
+  .search-input-wrapper {
+    padding: 0.5rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .search-input {
+    font-size: 0.875rem;
+  }
+
+  .search-submit {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 600px) {
   .header {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 0.5rem 1rem;
+    flex-direction: row;
+    align-items: center;
+    height: 70px;
+    padding: 0 1rem;
+
+    &.scrolled {
+      height: 65px;
+    }
 
     &_logo {
-      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+
+      img {
+        width: 52px;
+        height: 105px;
+      }
     }
 
     &_nav {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      width: 100%;
-      justify-content: flex-start;
+      display: none;
     }
 
     &_actions {
-      margin-top: 0.5rem;
-      width: 100%;
-      justify-content: flex-start;
+      margin-right: 0;
+      gap: 0.75rem;
     }
+  }
+
+  .search-bar {
+    top: 70px;
+
+    &.open {
+      max-height: 135px;
+      padding: 0.875rem 0;
+    }
+  }
+
+  .search-bar-content {
+    padding: 0 0.875rem;
+  }
+
+  .search-input-wrapper {
+    padding: 0.5rem 0.875rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    font-size: 0.85rem;
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .search-submit {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.825rem;
+    flex: 1;
+  }
+
+  .search-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
   }
 }
 
@@ -966,6 +1082,56 @@
 
 // Celulares pequenos (Galaxy S8, iPhone SE)
 @media (max-width: 414px) {
+  .header {
+    height: 70px;
+    padding: 0 0.875rem;
+
+    &.scrolled {
+      height: 65px;
+    }
+
+    &_logo {
+      font-size: 1.05rem;
+      gap: 0.3rem;
+
+      img {
+        width: 50px;
+        height: 100px;
+      }
+    }
+  }
+
+  .search-bar {
+    top: 70px;
+
+    &.open {
+      max-height: 140px;
+      padding: 0.75rem 0;
+    }
+  }
+
+  .search-bar-content {
+    padding: 0 0.75rem;
+  }
+
+  .search-input-wrapper {
+    padding: 0.5rem 0.875rem;
+    gap: 0.5rem;
+  }
+
+  .search-input {
+    font-size: 0.85rem;
+
+    &::placeholder {
+      font-size: 0.8rem;
+    }
+  }
+
+  .search-submit {
+    padding: 0.6rem 1.15rem;
+    font-size: 0.825rem;
+  }
+
   .dropdown-wrapper {
     padding: 0 0.875rem;
   }
@@ -1006,6 +1172,183 @@
 
     p {
       font-size: 0.85rem;
+    }
+  }
+}
+
+// Samsung Galaxy S22 e similares (360px)
+@media (max-width: 360px) {
+  .header {
+    padding: 0 0.75rem;
+    height: 65px;
+
+    &.scrolled {
+      height: 60px;
+
+      .header_logo img {
+        transform: scale(0.55);
+      }
+    }
+
+    &_logo {
+      font-size: 1rem;
+      gap: 0.25rem;
+
+      img {
+        width: 48px;
+        height: 96px;
+      }
+    }
+  }
+
+  .search-bar {
+    top: 65px;
+
+    &.open {
+      max-height: 145px;
+      padding: 0.75rem 0;
+    }
+  }
+
+  .search-bar-content {
+    padding: 0 0.65rem;
+  }
+
+  .search-input-wrapper {
+    padding: 0.45rem 0.75rem;
+    gap: 0.45rem;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: stretch;
+  }
+
+  .search-icon {
+    display: none;
+  }
+
+  .search-input {
+    font-size: 0.8rem;
+    padding: 0.45rem 0;
+    text-align: left;
+
+    &::placeholder {
+      font-size: 0.75rem;
+    }
+  }
+
+  .search-submit {
+    padding: 0.65rem 0.875rem;
+    font-size: 0.8rem;
+    border-radius: 7px;
+    width: 100%;
+  }
+
+  .dropdown-wrapper {
+    padding: 0 0.5rem;
+    top: 80px;
+  }
+
+  .nav-item-dropdown:hover .dropdown-wrapper {
+    height: 550px;
+  }
+
+  .dropdown-menu {
+    padding: 2rem 0;
+  }
+
+  .dropdown-container {
+    padding: 0 0.25rem;
+  }
+
+  .dropdown-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .dropdown-item a {
+    font-size: 0.875rem;
+    padding: 0.75rem 0.5rem;
+
+    &:hover {
+      padding-left: 1rem;
+    }
+  }
+
+  .detail-content {
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .btn-link {
+      font-size: 0.875rem;
+    }
+  }
+
+  .detail-image {
+    img {
+      height: 120px;
+    }
+  }
+
+  .off-canvas-menu {
+    width: 280px;
+  }
+
+  .off-canvas-close {
+    font-size: 2.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .off-canvas-nav {
+    padding: 1.5rem 1rem;
+
+    a {
+      font-size: 1.1rem;
+      padding: 0.875rem 1rem;
+    }
+  }
+
+  .nav-dropdown-toggle {
+    font-size: 1.1rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .nav-submenu a {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .busca-submenu {
+    width: 280px;
+  }
+
+  .busca-submenu-back {
+    font-size: 1.1rem;
+    padding: 1.25rem 1rem;
+
+    span:first-child {
+      font-size: 1.3rem;
+    }
+  }
+
+  .busca-submenu-nav {
+    padding: 1.5rem 1rem;
+
+    a {
+      font-size: 0.95rem;
+      padding: 0.875rem 1rem;
+
+      mat-icon {
+        font-size: 1.3rem;
+        width: 1.3rem;
+        height: 1.3rem;
+      }
     }
   }
 }

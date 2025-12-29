@@ -1,4 +1,5 @@
-import { Component, inject, ChangeDetectorRef, effect } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, effect, HostListener, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +20,8 @@ export class Header {
   isBuscaSubmenuOpen: boolean = false;
   isBuscaMenuOpen: boolean = false;
   isSearchOpen: boolean = false; // Nova flag para controlar barra de busca
+  isScrolled: boolean = false;
+  private platformId = inject(PLATFORM_ID);
 
   constructor() {
     // Effect para detectar mudanças no idioma e forçar atualização
@@ -46,6 +49,13 @@ export class Header {
 
   closeBuscaMenu() {
     this.isBuscaMenuOpen = false;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled = window.scrollY > 50;
+    }
   }
 
   toggleSearch() {

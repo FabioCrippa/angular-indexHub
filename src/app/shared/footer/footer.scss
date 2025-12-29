@@ -167,6 +167,10 @@
 }
 
 @media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 1rem 1rem;
+  }
+
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -174,9 +178,111 @@
 
   .footer__description {
     max-width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .footer__heading {
+    font-size: 0.9rem;
+  }
+
+  .footer__links li a {
+    font-size: 0.8rem;
   }
 
   .social-links {
     justify-content: flex-start;
   }
+
+  .footer__copyright {
+    font-size: 0.8rem;
+  }
+
+  .footer__legal a {
+    font-size: 0.8rem;
+  }
 }
+
+// Samsung Galaxy S22 (360px)
+@media (max-width: 360px) {
+  .footer {
+    padding: 2rem 0.875rem 0.875rem;
+  }
+
+  .footer__content {
+    padding: 0;
+  }
+
+  .footer__grid {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer__title {
+    font-size: 1.3rem;
+  }
+
+  .footer__description {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .footer__heading {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__links {
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        font-size: 0.75rem;
+
+        &:hover {
+          padding-left: 0.25rem;
+        }
+      }
+    }
+  }
+
+  .social-links {
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .footer__bottom {
+    padding-top: 1.5rem;
+  }
+
+  .footer__bottom-content {
+    gap: 0.75rem;
+  }
+
+  .footer__copyright {
+    font-size: 0.75rem;
+  }
+
+  .footer__legal {
+    gap: 0.5rem;
+
+    a {
+      font-size: 0.75rem;
+    }
+
+    .separator {
+      font-size: 0.75rem;
+    }
+  }
+}
+

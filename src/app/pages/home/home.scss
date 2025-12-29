@@ -17,8 +17,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 64px 24px 0 24px;
-  /* padding-top para compensar o header fixo */
+  padding: 95px 24px 0 24px;
+  /* padding-top para compensar o header fixo de 95px */
 }
 
 .hero-section__content img {
@@ -42,7 +42,7 @@
   animation: fadeInUp 0.8s ease ease-out;
 
   h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.75rem, 4.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.2;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -50,7 +50,7 @@
   }
 
   p {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(0.95rem, 2.2vw, 1.25rem);
     font-weight: 400;
     line-height: 1.6;
     margin-bottom: 2rem;
@@ -138,12 +138,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .cards-background {
     background: #fff;
     padding: 7rem 0;
-    margin-top: -5rem;
+    margin-top: -3rem;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -160,7 +163,7 @@
     align-items: stretch;
     margin-top: -5rem;
     position: relative;
-    z-index: 10;
+    z-index: 2;
     padding: 0 2rem;
   }
 
@@ -307,10 +310,79 @@
 }
 
 // Tablets e telas médias
+@media (max-width: 1024px) {
+  .hero-section__content {
+    min-height: 500px;
+    padding: 95px 1.5rem 0 1.5rem;
+  }
+
+  .hero-section__content__text {
+    max-width: 700px;
+
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .hero-search {
+    max-width: 500px;
+  }
+
+  .cards-background {
+    padding: 5rem 1.5rem;
+    margin-top: -2rem;
+  }
+
+  .home-cards {
+    gap: 1.5rem;
+    margin-top: -3rem;
+  }
+
+  .home-card {
+    flex: 0 1 calc(50% - 0.75rem);
+    min-height: 280px;
+  }
+}
+
 @media (max-width: 900px) {
+  .hero-section__content {
+    min-height: 450px;
+    padding: 56px 1rem 0 1rem;
+  }
+
+  .hero-section__content__text {
+    max-width: 650px;
+
+    h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      margin-bottom: 0.65rem;
+    }
+
+    p {
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .hero-search {
+    max-width: 450px;
+  }
+
+  .cards-background {
+    padding: 4rem 1rem;
+    margin-top: -1.5rem;
+  }
+
   .home-cards {
     gap: 1rem;
     padding: 0 1rem;
+    margin-top: -2rem;
   }
 
   .home-card {
@@ -323,36 +395,6 @@
 
   .cards-section__background {
     padding: 5rem 1rem 3rem 1rem;
-  }
-}
-
-// Tablets grandes e iPads (landscape)
-@media (max-width: 1024px) and (min-width: 901px) {
-  .hero-section__content {
-    min-height: 450px;
-    padding: 95px 1.5rem 0 1.5rem;
-  }
-
-  .hero-section__content__text h1 {
-    font-size: 3.5rem;
-  }
-
-  .hero-section__content__text p {
-    font-size: 1.75rem;
-  }
-
-  .cards-background {
-    padding: 3rem;
-    max-width: 100%;
-  }
-
-  .home-cards {
-    gap: 1.5rem;
-  }
-
-  .home-card {
-    flex: 0 1 calc(33.333% - 1rem);
-    min-height: 280px;
   }
 }
 
@@ -389,30 +431,38 @@
 // Tablets pequenos
 @media (max-width: 768px) and (min-width: 601px) {
   .hero-section__content {
-    min-height: 380px;
-    padding: 95px 1rem 0 1rem;
+    min-height: 400px;
+    padding: 56px 1rem 0 1rem;
   }
 
-  .hero-section__content__text h1 {
-    font-size: 2.5rem;
+  .hero-section__content__text {
+    h1 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+      margin-bottom: 1rem;
+    }
   }
 
-  .hero-section__content__text p {
-    font-size: 1.25rem;
+  .hero-search {
+    max-width: 420px;
   }
 
   .cards-background {
-    padding: 2rem 1.5rem;
-    margin-top: -3.5rem;
-    border-radius: 12px;
+    padding: 3rem 1rem;
+    margin-top: -1rem;
   }
 
   .home-cards {
-    gap: 1.25rem;
+    gap: 1rem;
+    margin-top: -1.5rem;
   }
 
   .home-card {
-    flex: 0 1 calc(50% - 0.625rem);
+    flex: 0 1 calc(50% - 0.5rem);
     min-height: 240px;
   }
 }
@@ -420,46 +470,52 @@
 // Celulares grandes (iPhone Plus, Galaxy S8+)
 @media (max-width: 600px) and (min-width: 415px) {
   .hero-section__content {
-    min-height: 350px;
-    padding: 95px 1rem 0 1rem;
+    min-height: 380px;
+    padding: 70px 1rem 0 1rem;
   }
 
-  .hero-section__content__text h1 {
-    font-size: 2rem;
-  }
+  .hero-section__content__text {
+    h1 {
+      font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+      margin-bottom: 0.5rem;
+    }
 
-  .hero-section__content__text p {
-    font-size: 1.125rem;
-  }
+    p {
+      font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+      margin-bottom: 1rem;
+    }
 
-  .hero-section__content__text button {
-    padding: 0.7rem 1rem;
-    font-size: 0.95rem;
+    button {
+      padding: 0.65rem 0.95rem;
+      font-size: 0.9rem;
+    }
   }
 
   .hero-search {
-    flex-direction: column;
+    max-width: 100%;
 
     .hero-search__input {
-      border-radius: 8px 8px 0 0;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
     }
 
     .hero-search__button {
-      border-radius: 0 0 8px 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
     }
   }
 
   .cards-background {
-    padding: 1.5rem 1rem;
-    margin-top: -3rem;
+    padding: 2.5rem 1rem;
+    margin-top: -1rem;
     width: calc(100% - 2rem);
-    max-width: 100%;
   }
 
   .home-cards {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    margin-top: -1rem;
   }
 
   .home-card {
@@ -473,35 +529,48 @@
 // Samsung Galaxy S8 e celulares médios (360px)
 @media (max-width: 414px) and (min-width: 360px) {
   .hero-section__content {
-    min-height: 320px;
-    padding: 95px 0.875rem 0 0.875rem;
+    min-height: 360px;
+    padding: 70px 0.875rem 0 0.875rem;
   }
 
-  .hero-section__content__text h1 {
-    font-size: 1.75rem;
+  .hero-section__content__text {
+    h1 {
+      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: clamp(0.8rem, 1.4vw, 0.875rem);
+      margin-bottom: 0.875rem;
+    }
+
+    button {
+      padding: 0.55rem 0.85rem;
+      font-size: 0.85rem;
+    }
   }
 
-  .hero-section__content__text p {
-    font-size: 1rem;
-  }
+  .hero-search {
+    .hero-search__input {
+      padding: 0.7rem 0.875rem;
+      font-size: 0.85rem;
+    }
 
-  .hero-section__content__text button {
-    padding: 0.6rem 0.9rem;
-    font-size: 0.9rem;
+    .hero-search__button {
+      padding: 0.7rem 1.1rem;
+      font-size: 0.85rem;
+    }
   }
 
   .cards-background {
-    padding: 1.25rem 0.875rem;
-    margin-top: -2.5rem;
+    padding: 2rem 0.875rem;
+    margin-top: -0.875rem;
     width: calc(100% - 1.75rem);
-    border-radius: 8px;
   }
 
   .home-cards {
     gap: 0.875rem;
-  }
-
-  .home-card {
+    margin-top: -0.875rem;
     min-height: 200px;
     
     .card-content {
@@ -521,45 +590,163 @@
 // Celulares pequenos (iPhone SE)
 @media (max-width: 359px) {
   .hero-section__content {
-    min-height: 300px;
-    padding: 95px 0.75rem 0 0.75rem;
+    min-height: 340px;
+    padding: 65px 0.75rem 0 0.75rem;
   }
 
   .hero-section__content__text h1 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    margin-bottom: 0.45rem;
   }
 
   .hero-section__content__text p {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 1.3vw, 0.85rem);
+    margin-bottom: 0.75rem;
   }
 
-  .hero-section__content__text button {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
+  .hero-search {
+    margin: 0 auto 1.25rem;
+  }
+
+  .hero-search__input {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .hero-search__button {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+
+    span {
+      font-size: 0.8rem;
+    }
   }
 
   .cards-background {
-    padding: 1rem 0.75rem;
-    margin-top: -2rem;
+    padding: 1.75rem 0.75rem;
+    margin-top: -0.75rem;
     width: calc(100% - 1.5rem);
   }
 
   .home-cards {
     gap: 0.75rem;
+    padding: 0 0.5rem;
+    margin-top: -0.75rem;
   }
 
   .home-card {
-    min-height: 180px;
+    min-height: 190px;
+    border-radius: 8px;
+
+    &:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .card-content {
+      padding: 1rem;
+
+      svg {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0.75rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+        margin-bottom: 0.35rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+      }
+    }
+
+    .card-hover {
+      .hover-title {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+      }
+    }
+  }
+}
+
+// Samsung Galaxy S22 específico (360px)
+@media (max-width: 360px) and (min-width: 340px) {
+  .hero-section__content {
+    min-height: 340px;
+    padding: 65px 1rem 0 1rem;
+  }
+
+  .hero-section__content__text {
+    max-width: 100%;
+
+    h1 {
+      font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+      margin-bottom: 0.45rem;
+    }
+
+    p {
+      font-size: clamp(0.75rem, 1.3vw, 0.85rem);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .hero-search {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .hero-search__input {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.8rem;
+
+    &::placeholder {
+      font-size: 0.75rem;
+    }
+  }
+
+  .hero-search__button {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .cards-background {
+    padding: 1.75rem 1rem;
+    margin-top: -0.75rem;
+    width: calc(100% - 2rem);
+  }
+
+  .home-cards {
+    gap: 1rem;
+    padding: 0 0.5rem;
+    margin-top: -0.75rem;
+  }
+
+  .home-card {
+    min-height: 190px;
 
     .card-content {
       padding: 1.25rem;
 
+      svg {
+        width: 42px;
+        height: 42px;
+      }
+
       h2 {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
       }
 
       p {
         font-size: 0.85rem;
+      }
+    }
+
+    .card-hover {
+      .hover-title {
+        font-size: 1.05rem;
       }
     }
   }
@@ -720,6 +907,86 @@
 
     p {
       font-size: 1rem;
+    }
+  }
+
+  .featured-card__content {
+    padding: 1.25rem;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Samsung Galaxy S22 (360px)
+@media (max-width: 360px) {
+  .featured-section {
+    padding: 2.5rem 0.875rem;
+  }
+
+  .featured-header {
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .featured-grid {
+    gap: 1.25rem;
+  }
+
+  .featured-card {
+    border-radius: 8px;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .featured-card__image {
+    height: 160px;
+  }
+
+  .featured-card__content {
+    padding: 1rem;
+
+    h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+  }
+
+  .badge {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+  }
+
+  .rating {
+    gap: 0.35rem;
+    font-size: 0.875rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    span {
+      font-size: 0.875rem;
     }
   }
 }
