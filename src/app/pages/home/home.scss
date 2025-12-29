@@ -174,7 +174,7 @@
     min-height: 320px;
 
     &:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-8px);
     }
 
     .card-content {
@@ -201,7 +201,7 @@
         width: 48px;
         height: 48px;
         margin-bottom: 1rem;
-        color: #1976d2;
+        color: #0f172a;
         opacity: 0.9;
       }
     }
@@ -247,7 +247,7 @@
         transition: bottom .5s ease, background .2s ease;
 
         &:hover {
-          background: linear-gradient(to top, #1976d2, rgba(25, 118, 210, 0.9));
+          background: linear-gradient(to top, #141414, rgba(51, 51, 53, 0.9));
           /* leve transparência ao passar o mouse */
         }
 
