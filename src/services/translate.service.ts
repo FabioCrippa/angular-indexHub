@@ -76,6 +76,16 @@ export class TranslateService {
       pt: 'Buscar',
       en: 'Search',
       es: 'Buscar'
+    },
+    'abrir menu': {
+      pt: 'Abrir menu',
+      en: 'Open menu',
+      es: 'Abrir menú'
+    },
+    'fechar menu': {
+      pt: 'Fechar menu',
+      en: 'Close menu',
+      es: 'Cerrar menú'
     }
   };
 
