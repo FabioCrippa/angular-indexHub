@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateService } from '../../services/translate.service';
+import { TranslateService, Language } from '../../../services/translate.service';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +19,10 @@ export class Header {
   isMenuOpen: boolean = false;
   isBuscaSubmenuOpen: boolean = false;
   isBuscaMenuOpen: boolean = false;
-  isSearchOpen: boolean = false; // Nova flag para controlar barra de busca
+  isSearchOpen: boolean = false;
   isScrolled: boolean = false;
+  isLangDropdownOpen: boolean = false;
+  languages: Language[] = ['pt', 'en', 'es'];
   private platformId = inject(PLATFORM_ID);
 
   constructor() {
@@ -64,6 +66,29 @@ export class Header {
 
   toggleLanguage() {
     this.translateService.toggleLanguage();
+  }
+
+  toggleLangDropdown() {
+    this.isLangDropdownOpen = !this.isLangDropdownOpen;
+  }
+
+  selectLanguage(lang: Language) {
+    this.translateService.setLanguage(lang);
+    this.isLangDropdownOpen = false;
+  }
+
+  getLanguageFlag(lang: Language): string {
+    const flags = { 
+      pt: 'assets/icons8-brasil.png',
+      en: 'assets/icons8-emoji-dos-estados-unidos.png',
+      es: 'assets/icons8-espanha.png'
+    };
+    return flags[lang];
+  }
+
+  getLanguageName(lang: Language): string {
+    const names = { pt: 'Português', en: 'English', es: 'Español' };
+    return names[lang];
   }
 
   // Método helper para tradução

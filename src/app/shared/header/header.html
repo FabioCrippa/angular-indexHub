@@ -1,15 +1,15 @@
 <header class="header" [class.scrolled]="isScrolled">
     <div class="header_logo">
         <img 
-            src="/assets/logo_indexjournal4.png" 
+            src="/assets/logo_indexjournal2.1.png" 
             alt="Index Journal Logo"/>
-        <span>Index Journal</span>
+        <span>Index <br>Journal</span>
     </div>
     <nav class="header_nav">
-        <a routerLink="/" routerLinkActive="active">Home</a>
+        <a routerLink="/" routerLinkActive="active">{{ t('home') }}</a>
     
     <div class="nav-item-dropdown">
-      <a class="nav-link">Busca</a>
+      <a class="nav-link">{{ t('busca') }}</a>
       <div class="dropdown-wrapper">
         <div class="dropdown-menu">
           <div class="dropdown-container">
@@ -18,13 +18,13 @@
               <div class="dropdown-content">
                 <ul class="dropdown-list">
                   <li class="dropdown-item" (mouseenter)="showDetail('revistas')">
-                    <a>Revistas Científicas</a>
+                    <a>{{ t('revistas') }}</a>
                   </li>
                   <li class="dropdown-item" (mouseenter)="showDetail('artigos')">
-                    <a>Artigos</a>
+                    <a>{{ t('artigos') }}</a>
                   </li>
                   <li class="dropdown-item" (mouseenter)="showDetail('autores')">
-                    <a>Autores</a>
+                    <a>{{ t('autores') }}</a>
                   </li>
                 </ul>
               </div>
@@ -70,8 +70,8 @@
       </div>
     </div>
         
-        <a routerLink="/rankings" routerLinkActive="active">Rankings</a>
-        <a routerLink="/editor" routerLinkActive="active">Editor</a>
+        <a routerLink="/rankings" routerLinkActive="active">{{ t('rankings') }}</a>
+        <a routerLink="/editor" routerLinkActive="active">{{ t('editor') }}</a>
     </nav>
 
     <button 
@@ -85,11 +85,30 @@
       <span></span>
     </button>
     <div class="header_actions">
-        <button 
-            (click)="toggleLanguage()"
-            [attr.aria-label]="translateService.currentLang() === 'pt' ? 'Trocar para inglês' : 'Switch to Portuguese'">
-            <span class="lang-badge">{{ translateService.currentLang().toUpperCase() }}</span>
-        </button>
+        <div class="language-selector">
+            <button 
+                class="lang-current"
+                (click)="toggleLangDropdown()"
+                [attr.aria-label]="'Selecionar idioma'">
+                <img [src]="getLanguageFlag(translateService.currentLang())" 
+                     alt="Language flag"
+                     class="lang-flag">
+                <span class="lang-code">{{ translateService.currentLang().toUpperCase() }}</span>
+            </button>
+            <div class="lang-dropdown" [class.open]="isLangDropdownOpen">
+                <button 
+                    *ngFor="let lang of languages"
+                    class="lang-option"
+                    [class.active]="translateService.currentLang() === lang"
+                    (click)="selectLanguage(lang)">
+                    <img 
+                        [src]="getLanguageFlag(lang)" 
+                        alt="Language flag"
+                        class="lang-flag">
+                    <span class="lang-name">{{ getLanguageName(lang) }}</span>
+                </button>
+            </div>
+        </div>
         <button 
             (click)="toggleSearch()"
             [attr.aria-label]="isSearchOpen ? 'Fechar busca' : 'Abrir busca'">

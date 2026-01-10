@@ -3,6 +3,12 @@
   color: #e2e8f0;
   padding: 4rem 2rem 2rem;
   min-height: calc(100vh - 95px);
+
+  &.visible {
+    .footer__logo img {
+      transform: scale(0.71);
+    }
+  }
 }
 
 .footer__content {
@@ -21,12 +27,8 @@
 .footer__logo {
   img {
     height: 127px;
-    width: 65px;
+    width: 85px;
     transition: transform 0.3s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
   }
 }
 
