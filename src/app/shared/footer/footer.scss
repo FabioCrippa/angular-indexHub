@@ -28,6 +28,13 @@
   img {
     height: 127px;
     width: 85px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  svg {
+    width: 85px;
+    height: 127px;
     transition: transform 0.3s ease;
   }
 }
